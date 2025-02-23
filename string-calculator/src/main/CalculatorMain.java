@@ -13,11 +13,6 @@ public class CalculatorMain {
 
         System.out.println("Input :: " + input);
 
-        // String input = "1:2,3:4 +";
-        // String input = "6:10,2:3 *";
-        // String input = "7,2:10 -";
-        // String input = "10,3 /";
-
         validator.validateAll(input);
 
         String[] listStrings = CalculatorUtils.splitStrings(input);
