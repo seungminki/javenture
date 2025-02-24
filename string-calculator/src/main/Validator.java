@@ -1,5 +1,7 @@
 package main;
 
+import main.enums.ErrorMessage;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,7 +18,7 @@ public class Validator {
 
     public void isEmpty(String input) {
         if (input == null) {
-            throw new IllegalArgumentException("입력값이 null값 입니다");
+            throw new IllegalArgumentException(ErrorMessage.IS_NULL.getMessage());
         }
     }
 
@@ -25,13 +27,13 @@ public class Validator {
         Matcher matcher = pattern.matcher(input);
 
         if (matcher.find() == false) {
-            throw new IllegalArgumentException("공백+사칙연산이 포함되지 않았습니다");
+            throw new IllegalArgumentException(ErrorMessage.NO_SPACE_OPERATOR.getMessage());
         }
     }
 
     public void validSeparator(String input) {
         if (!(input.contains(":") || input.contains(","))) {
-            throw new IllegalArgumentException("(:) 또는 (,) 구분자가 사용되지 않았습니다");
+            throw new IllegalArgumentException(ErrorMessage.NON_DELIMITER.getMessage());
         }
     }
 
@@ -40,7 +42,7 @@ public class Validator {
 
         listStrings = CalculatorUtils.splitStrings(input);
         if (listStrings.length < 3) {
-            throw new IllegalArgumentException("연산에 필요한 최소 숫자 값이 아닙니다");
+            throw new IllegalArgumentException(ErrorMessage.ONE_NUMERIC.getMessage());
         }
     }
 }
