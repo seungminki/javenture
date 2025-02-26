@@ -1,48 +1,64 @@
 package main;
 
+import main.enums.DelimiterType;
 import main.enums.ErrorMessage;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import main.enums.OperationType;
 
 public class Validator {
 
-    public void validateAll(String input) {
-
-        isEmpty(input);
-        validOperator(input);
-        validSeparator(input);
-        countNum(input);
-
-    }
-
-    public void isEmpty(String input) {
+    public static void isNull(String input) {
         if (input == null) {
             throw new IllegalArgumentException(ErrorMessage.IS_NULL.getMessage());
         }
     }
 
-    public void validOperator(String input) {
-        Pattern pattern = Pattern.compile("\\s[\\+\\-*/:,]");
-        Matcher matcher = pattern.matcher(input);
-
-        if (matcher.find() == false) {
-            throw new IllegalArgumentException(ErrorMessage.NO_SPACE_OPERATOR.getMessage());
+    public static void isEmpty(String input) {
+        if (input.trim() == "") {
+            throw new IllegalArgumentException(ErrorMessage.IS_EMPTY.getMessage());
         }
     }
 
-    public void validSeparator(String input) {
-        if (!(input.contains(":") || input.contains(","))) {
+    public void notDelimiter(String input) {
+        try {
+            DelimiterType dp = DelimiterType.fromSymbol(input);
+        } catch (Exception e) {
             throw new IllegalArgumentException(ErrorMessage.NON_DELIMITER.getMessage());
         }
     }
 
-    public void countNum(String input) {
-        String[] listStrings = new String[0];
-
-        listStrings = CalculatorUtils.splitStrings(input);
-        if (listStrings.length < 3) {
-            throw new IllegalArgumentException(ErrorMessage.ONE_NUMERIC.getMessage());
+    public void invalidOp(String input) { // "&"
+        try {
+            OperationType op = OperationType.fromSymbol(input);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_OPERATOR.getMessage());
         }
     }
+
+    public void invalidDe(String input) { // ";"
+        try {
+            DelimiterType dp = DelimiterType.fromSymbol(input);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_DELIMITER.getMessage());
+        }
+    }
+
+    public void multipleOp(String input) { // "*+"
+        if (input.length() != 1) {
+            throw new IllegalArgumentException(ErrorMessage.MULTIPLE_OPERATOR.getMessage());
+        }
+    }
+
+    public static void notSpaceOper(String input) {
+        if (!input.contains(" ")) {
+            throw new IllegalArgumentException(ErrorMessage.NO_SPACE_OPERATOR.getMessage());
+        }
+    }
+
+    public static void isFloat(boolean b) {
+        if (b == true) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_FLOAT.getMessage());
+        }
+
+    }
+
 }
