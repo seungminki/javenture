@@ -14,7 +14,7 @@ public enum DelimiterType {
         return symbol;
     }
 
-    public DelimiterType fromSymbol(String symbol) {
+    public static DelimiterType fromSymbol(String symbol) {
         for (DelimiterType op : values()) {
             if (op.symbol.equals(symbol)) {
                 return op;
