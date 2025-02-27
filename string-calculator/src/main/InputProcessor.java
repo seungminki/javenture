@@ -31,7 +31,7 @@ public class InputProcessor {
     }
 
     public String[] parserInput(String input) {
-        Validator.notSpaceOper(input);
+        Validator.notSpace(input);
 
         String[] strArr = input.split(" "); // { "3:4", "+" }
 

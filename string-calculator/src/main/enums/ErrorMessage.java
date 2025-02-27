@@ -13,7 +13,7 @@ public enum ErrorMessage {
     MULTIPLE_OPERATOR("연산자는 한개여야 합니다"),
 
     OUT_OF_RANGE("입력 값이 너무 크거나 작습니다"),
-    NO_SPACE_OPERATOR("연산자를 공백으로 구분하지 않았습니다"),
+    NON_SPACE("공백이 존재하지 않습니다"),
 
     DIVISION_BY_ZERO("입력 값을 0으로 나눌 수 없습니다"),
 

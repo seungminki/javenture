@@ -48,9 +48,9 @@ public class Validator {
         }
     }
 
-    public static void notSpaceOper(String input) {
+    public static void notSpace(String input) {
         if (!input.contains(" ")) {
-            throw new IllegalArgumentException(ErrorMessage.NO_SPACE_OPERATOR.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NON_SPACE.getMessage());
         }
     }
 
