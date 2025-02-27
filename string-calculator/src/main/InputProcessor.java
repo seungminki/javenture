@@ -16,24 +16,19 @@ public class InputProcessor {
     }
 
     public void validatorInput(String inputNum, String inputSymbol) {
-        String[] inputNumList = inputNum.split("[:,]+");
-        for (String s : inputNumList) {
-            Integer num = Integer.parseInt(s);
-            if (num != Math.floor(num)) {
-                Validator.isFloat(true);
-            }
-        }
-    }
+        Validator.multipleOp(inputSymbol);
 
-    public int validatorInput(String[] input) {
-
-        return 0;
+        Validator.invalidDe(inputNum);
+        Validator.isFloat(inputNum);
     }
 
     public String[] parserInput(String input) {
         Validator.notSpace(input);
 
         String[] strArr = input.split(" "); // { "3:4", "+" }
+        Validator.notOperator(strArr);
+
+        // TODO: e.g.) 2: 2 + 인 경우 {"2:", "2", "+"}으로 나눠지는 에러 해결
 
         return strArr;
     }
@@ -42,13 +37,13 @@ public class InputProcessor {
         List<Double> numIntList = new ArrayList<>();
 
         String[] s = inputNum.split("[:,]+"); // { "3", "4" }
+        Validator.isOneNum(s);
         try {
             List<String> numStrList = Arrays.asList(s);
             numIntList = numStrList.stream().map(Double::parseDouble).collect(Collectors.toList());
         } catch (Exception e) {
             throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC.getMessage());
         }
-        // ONE_NUM
 
         return numIntList;
     }
