@@ -47,7 +47,10 @@ public class Validator {
         if (!input.contains(" ")) {
             throw new IllegalArgumentException(ErrorMessage.NON_SPACE.getMessage());
         }
-        Pattern pattern = Pattern.compile("\\s[\\+\\-*/:,]");
+    }
+
+    public static void notSpaceOper(String input) {
+        Pattern pattern = Pattern.compile("\\s[\\+\\-*/]");
         Matcher matcher = pattern.matcher(input);
 
         if (matcher.find() == false) {
