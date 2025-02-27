@@ -44,7 +44,7 @@ public class Calculator {
 
     private static double divide(Double baseNum, List<Double> numList) {
 
-        if (baseNum == 0 || numList.contains(0)) {
+        if (baseNum == 0 || numList.contains(0.0)) {
             throw new IllegalArgumentException(ErrorMessage.DIVISION_BY_ZERO.getMessage());
         }
         for (Double n : numList) {
